@@ -1,0 +1,146 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <?php echo $this->headTitle() ?>
+    <?php echo $this->headLink() ?>
+    <?php echo $this->headScript() ?>
+</head>
+<body>
+
+    <?php echo $this->layout()->content ?>
+
+<!-- Sticky Player -->
+<style>
+#radio-sticky-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #1a1a2e;
+    color: white;
+    z-index: 9999;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+}
+#radio-sticky-player button {
+    background: #e94560;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+#radio-sticky-player button:hover {
+    transform: scale(1.1);
+}
+#radio-sticky-player select {
+    background: #16213e;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    max-width: 200px;
+}
+#radio-sticky-player .now-playing {
+    font-size: 13px;
+    color: #aaa;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+@media (max-width: 600px) {
+    #radio-sticky-player { flex-wrap: wrap; padding: 8px; gap: 8px; }
+    #radio-sticky-player select { max-width: 140px; font-size: 12px; }
+    #radio-sticky-player .now-playing { max-width: 140px; font-size: 11px; }
+}
+</style>
+
+<div id="radio-sticky-player">
+    <button id="radio-play-btn" onclick="togglePlay()">
+        <svg id="radio-icon-play" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+        <svg id="radio-icon-pause" width="20" height="20" fill="currentColor" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
+    </button>
+    <select id="radio-station-select" onchange="changeStream()" style="background:#16213e;color:#fff">
+        <option value="https://radio.kbrbaik.live/stream">KBRBaik Main</option>
+        <option value="https://radio.kbrbaik.live/kabar-purwodadi">Kabar Purwodadi</option>
+        <option value="https://radio.kbrbaik.live/kabar-semarang">Kabar Semarang</option>
+        <option value="https://radio.kbrbaik.live/kabar-wonogiri">Kabar Wonogiri</option>
+        <option value="https://radio.kbrbaik.live/kabar-wonosobo">Kabar Wonosobo</option>
+        <option value="https://radio.kbrbaik.live/kabar-depok">Kabar Depok</option>
+        <option value="https://radio.kbrbaik.live/kabar-jogjakarta">Kabar Jogjakarta</option>
+        <option value="https://radio.kbrbaik.live/kabar-bandung">Kabar Bandung</option>
+        <option value="https://radio.kbrbaik.live/kabar-solo">Kabar Solo</option>
+    </select>
+    <span class="now-playing" id="radio-nowplaying">KBRBaik Radio</span>
+</div>
+
+<audio id="radio-audio" preload="none"></audio>
+
+<script>
+var audio = document.getElementById("radio-audio");
+var iconPlay = document.getElementById("radio-icon-play");
+var iconPause = document.getElementById("radio-icon-pause");
+var select = document.getElementById("radio-station-select");
+var np = document.getElementById("radio-nowplaying");
+
+function togglePlay() {
+    if (audio.paused) {
+        if (!audio.src) audio.src = select.value;
+        audio.play().then(function() {
+            iconPlay.style.display = "none";
+            iconPause.style.display = "";
+        }).catch(function() {
+            np.textContent = "Stream tidak tersedia";
+        });
+    } else {
+        audio.pause();
+        iconPlay.style.display = "";
+        iconPause.style.display = "none";
+    }
+}
+
+function changeStream() {
+    audio.src = select.value;
+    iconPlay.style.display = "none";
+    iconPause.style.display = "";
+    audio.play().catch(function() {
+        np.textContent = "Stream tidak tersedia";
+        iconPlay.style.display = "";
+        iconPause.style.display = "none";
+    });
+}
+
+audio.addEventListener("play", function() {
+    iconPlay.style.display = "none";
+    iconPause.style.display = "";
+    np.textContent = select.options[select.selectedIndex].text;
+});
+audio.addEventListener("pause", function() {
+    iconPlay.style.display = "";
+    iconPause.style.display = "none";
+});
+audio.addEventListener("error", function() {
+    np.textContent = "OFFLINE";
+    iconPlay.style.display = "";
+    iconPause.style.display = "none";
+});
+</script>
+</body>
+</html>

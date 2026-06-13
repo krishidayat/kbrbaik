@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kabar Baik — Komunitas Digital GKJ & GKI Jateng</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #1D9E75;
+  --teal-light: #E1F5EE;
+  --teal-dark: #0F6E56;
+  --blue: #2563EB;
+  --blue-light: #EFF6FF;
+  --amber: #B45309;
+  --amber-light: #FFFBEB;
+  --ink: #1a1a1a;
+  --ink-muted: #555;
+  --ink-faint: #999;
+  --cream: #FAFAF7;
+  --white: #ffffff;
+  --border: rgba(0,0,0,0.08);
+  --border-strong: rgba(0,0,0,0.15);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --mono: 'DM Mono', monospace;
+  --r: 10px;
+  --rl: 16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,250,247,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--border);
+  padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--serif); font-size: 18px; font-weight: 600;
+  color: var(--ink); text-decoration: none;
+}
+.nav-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--teal);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.5;transform:scale(.85)}
+}
+.nav-links {
+  display: flex; align-items: center; gap: 1.75rem; list-style: none;
+}
+.nav-links a {
+  font-size: 13px; font-weight: 400; color: var(--ink-muted);
+  text-decoration: none; transition: color .2s;
+}
+.nav-links a:hover { color: var(--teal); }
+.nav-cta {
+  font-size: 12px; font-weight: 500;
+  background: var(--teal); color: #fff;
+  padding: 7px 18px; border-radius: 999px;
+  text-decoration: none; transition: background .2s;
+}
+.nav-cta:hover { background: var(--teal-dark); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 92vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 4rem;
+  padding: 5rem 4rem 4rem;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -120px; right: -120px;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(29,158,117,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 500; letter-spacing: .12em;
+  color: var(--teal-dark);
+  background: var(--teal-light); border: 0.5px solid rgba(29,158,117,.25);
+  padding: 5px 14px; border-radius: 999px;
+  margin-bottom: 1.5rem;
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 600; line-height: 1.12;
+  color: var(--ink); margin-bottom: 1.25rem;
+  letter-spacing: -.01em;
+}
+.hero-title em {
+  font-style: italic; color: var(--teal);
+}
+.hero-body {
+  font-size: 15px; color: var(--ink-muted);
+  line-height: 1.75; max-width: 440px;
+  margin-bottom: 2rem;
+}
+.hero-actions {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+}
+.btn-primary {
+  font-size: 13px; font-weight: 500;
+  background: var(--teal); color: #fff;
+  padding: 11px 24px; border-radius: 999px;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: background .2s, transform .15s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); }
+.btn-ghost {
+  font-size: 13px; font-weight: 400; color: var(--ink-muted);
+  background: transparent; border: 0.5px solid var(--border-strong);
+  padding: 11px 20px; border-radius: 999px;
+  text-decoration: none; cursor: pointer;
+  transition: border-color .2s, color .2s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-ghost:hover { color: var(--ink); border-color: var(--ink); }
+
+/* Radio player card */
+.hero-right { display: flex; flex-direction: column; gap: 14px; }
+
+.radio-card {
+  background: var(--white);
+  border: 0.5px solid var(--border);
+  border-radius: var(--rl);
+  padding: 1.5rem;
+  animation: fadeUp .8s ease both .3s;
+}
+@keyframes fadeUp {
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.radio-live {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 14px;
+}
+.live-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #EF4444;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+.live-label { font-size: 11px; font-weight: 500; color: #EF4444; letter-spacing: .08em; }
+.radio-title { font-family: var(--serif); font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+.radio-sub { font-size: 12px; color: var(--ink-faint); margin-bottom: 16px; }
+.radio-waveform {
+  display: flex; align-items: center; gap: 3px;
+  height: 32px; margin-bottom: 16px;
+}
+.wave-bar {
+  width: 3px; border-radius: 2px;
+  background: var(--teal);
+  animation: wave 1.2s ease-in-out infinite;
+}
+.wave-bar:nth-child(1){height:40%;animation-delay:0s}
+.wave-bar:nth-child(2){height:70%;animation-delay:.1s}
+.wave-bar:nth-child(3){height:100%;animation-delay:.2s}
+.wave-bar:nth-child(4){height:60%;animation-delay:.3s}
+.wave-bar:nth-child(5){height:80%;animation-delay:.4s}
+.wave-bar:nth-child(6){height:45%;animation-delay:.5s}
+.wave-bar:nth-child(7){height:90%;animation-delay:.15s}
+.wave-bar:nth-child(8){height:55%;animation-delay:.25s}
+.wave-bar:nth-child(9){height:75%;animation-delay:.35s}
+.wave-bar:nth-child(10){height:40%;animation-delay:.45s}
+@keyframes wave {
+  0%,100%{transform:scaleY(1)}
+  50%{transform:scaleY(.3)}
+}
+.radio-controls {
+  display: flex; align-items: center; gap: 10px;
+}
+.play-btn {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--teal); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 16px;
+  transition: background .2s, transform .15s;
+  flex-shrink: 0;
+}
+.play-btn:hover { background: var(--teal-dark); transform: scale(1.05); }
+.radio-prog { flex: 1; }
+.prog-bar-bg { height: 3px; background: #eee; border-radius: 2px; }
+.prog-bar-fill { height: 3px; background: var(--teal); border-radius: 2px; width: 38%; }
+.prog-time { font-size: 10px; color: var(--ink-faint); margin-top: 4px; font-family: var(--mono); }
+
+/* Stat strip */
+.stat-strip {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  animation: fadeUp .8s ease both .5s;
+}
+.stat-item {
+  background: var(--white); border: 0.5px solid var(--border);
+  border-radius: var(--r); padding: .9rem 1rem;
+  text-align: center;
+}
+.stat-num {
+  font-family: var(--serif); font-size: 26px; font-weight: 600;
+  color: var(--teal); line-height: 1;
+}
+.stat-label { font-size: 11px; color: var(--ink-faint); margin-top: 4px; }
+
+/* ── SECTIONS ── */
+section { padding: 5rem 4rem; }
+.sec-inner { max-width: 1100px; margin: 0 auto; }
+
+.sec-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: .12em;
+  color: var(--ink-faint); text-transform: uppercase;
+  margin-bottom: .75rem;
+}
+.sec-title {
+  font-family: var(--serif); font-size: clamp(28px,4vw,42px);
+  font-weight: 600; line-height: 1.15; margin-bottom: 1rem;
+}
+.sec-body {
+  font-size: 15px; color: var(--ink-muted); line-height: 1.75;
+  max-width: 520px;
+}
+
+/* ── ACTIVITIES ── */
+.act-section { background: var(--white); }
+.act-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+.act-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.act-card {
+  border: 0.5px solid var(--border);
+  border-radius: var(--rl); padding: 1.75rem;
+  transition: border-color .25s, transform .2s;
+  position: relative; overflow: hidden;
+}
+.act-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  opacity: 0; transition: opacity .25s;
+}
+.act-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.act-card:hover::before { opacity: 1; }
+.act-card.c1::before { background: var(--teal); }
+.act-card.c2::before { background: var(--blue); }
+.act-card.c3::before { background: var(--amber); }
+.act-card.c4::before { background: #7F77DD; }
+.act-icon-wrap {
+  width: 52px; height: 52px; border-radius: var(--r);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; margin-bottom: 1rem;
+}
+.ai1{background:#E1F5EE;color:#0F6E56}
+.ai2{background:#EFF6FF;color:#1D4ED8}
+.ai3{background:#FEF3C7;color:#92400E}
+.ai4{background:#EEEDFE;color:#4C1D95}
+.act-num { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); margin-bottom: 6px; }
+.act-title { font-family: var(--serif); font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+.act-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.65; margin-bottom: 1rem; }
+.act-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.act-tag {
+  font-size: 10px; padding: 3px 10px; border-radius: 999px;
+  background: var(--cream); border: 0.5px solid var(--border);
+  color: var(--ink-muted);
+}
+
+/* ── JOURNEY ── */
+.journey-section { background: var(--cream); }
+.journey-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px; margin-top: 3rem;
+}
+.journey-card {
+  background: var(--white); border: 0.5px solid var(--border);
+  border-radius: var(--rl); padding: 1.75rem;
+  position: relative;
+}
+.journey-num {
+  font-family: var(--serif); font-size: 60px; font-weight: 600;
+  color: rgba(0,0,0,.05); line-height: 1;
+  position: absolute; top: 1rem; right: 1.25rem;
+  pointer-events: none;
+}
+.journey-icon {
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 1rem; border: 0.5px solid;
+}
+.ji1{background:#E1F5EE;color:#0F6E56;border-color:#9FE1CB}
+.ji2{background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE}
+.ji3{background:#EEEDFE;color:#4C1D95;border-color:#C4B5FD}
+.journey-phase { font-size: 10px; font-weight: 500; letter-spacing: .1em; margin-bottom: 6px; }
+.jp1{color:#0F6E56}.jp2{color:#1D4ED8}.jp3{color:#4C1D95}
+.journey-title { font-family: var(--serif); font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+.journey-body { font-size: 12px; color: var(--ink-muted); line-height: 1.65; margin-bottom: 1rem; }
+.journey-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.journey-list li {
+  font-size: 12px; color: var(--ink-muted);
+  display: flex; align-items: flex-start; gap: 8px;
+}
+.journey-list li::before {
+  content: '→';
+  color: var(--teal); font-size: 11px; margin-top: 2px; flex-shrink: 0;
+}
+
+/* ── PLATFORM ── */
+.platform-section { background: var(--white); }
+.platform-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 16px; margin-top: 3rem;
+}
+.plat-card {
+  border: 0.5px solid var(--border); border-radius: var(--rl);
+  overflow: hidden;
+}
+.plat-head {
+  padding: 1.5rem 1.5rem 1rem;
+  border-bottom: 0.5px solid var(--border);
+}
+.plat-icon-lg {
+  width: 56px; height: 56px; border-radius: var(--r);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; margin-bottom: 12px;
+}
+.pg1{background:#E1F5EE;color:#0F6E56}
+.pg2{background:#EFF6FF;color:#1D4ED8}
+.pg3{background:#EEEDFE;color:#4C1D95}
+.plat-name { font-family: var(--serif); font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+.plat-tagline { font-size: 12px; color: var(--ink-faint); }
+.plat-features { padding: 1rem 1.5rem 1.5rem; }
+.plat-feat {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: var(--ink-muted);
+  padding: 5px 0; border-bottom: 0.5px solid var(--border);
+}
+.plat-feat:last-child { border-bottom: none; }
+.feat-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.fd1{background:#1D9E75}.fd2{background:#2563EB}.fd3{background:#7F77DD}
+
+/* ── AI STACK ── */
+.stack-section { background: #0F172A; color: #E2E8F0; }
+.stack-section .sec-eyebrow { color: #64748B; }
+.stack-section .sec-title { color: #F8FAFC; }
+.stack-section .sec-body { color: #94A3B8; }
+.stack-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 12px; margin-top: 3rem;
+}
+.stack-card {
+  background: rgba(255,255,255,.04);
+  border: 0.5px solid rgba(255,255,255,.1);
+  border-radius: var(--rl); padding: 1.5rem;
+  transition: border-color .2s;
+}
+.stack-card:hover { border-color: rgba(255,255,255,.2); }
+.stack-tag {
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  padding: 3px 10px; border-radius: 4px; margin-bottom: 12px;
+  display: inline-block;
+}
+.st1{background:rgba(29,158,117,.2);color:#6EE7B7}
+.st2{background:rgba(124,58,237,.2);color:#C4B5FD}
+.st3{background:rgba(245,158,11,.2);color:#FCD34D}
+.st4{background:rgba(59,130,246,.2);color:#93C5FD}
+.stack-title { font-size: 15px; font-weight: 500; color: #F1F5F9; margin-bottom: 6px; }
+.stack-body { font-size: 12px; color: #94A3B8; line-height: 1.65; }
+
+/* ── ROADMAP ── */
+.roadmap-section { background: var(--cream); }
+.roadmap-row {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 12px; margin-top: 3rem;
+}
+.rm-card {
+  background: var(--white); border: 0.5px solid var(--border);
+  border-radius: var(--rl); padding: 1.25rem;
+  position: relative; overflow: hidden;
+}
+.rm-accent { height: 3px; position: absolute; top: 0; left: 0; right: 0; }
+.ra1{background:var(--teal)}.ra2{background:var(--blue)}.ra3{background:#7F77DD}.ra4{background:#D85A30}
+.rm-phase { font-size: 10px; color: var(--ink-faint); margin: .5rem 0 6px; font-family: var(--mono); }
+.rm-title { font-family: var(--serif); font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+.rm-chips { display: flex; flex-direction: column; gap: 4px; }
+.rm-chip {
+  font-size: 10px; padding: 3px 9px; border-radius: 999px;
+  background: var(--cream); border: 0.5px solid var(--border);
+  color: var(--ink-muted); width: fit-content;
+}
+
+/* ── CTA ── */
+.cta-section {
+  background: var(--teal);
+  padding: 5rem 4rem;
+  text-align: center;
+}
+.cta-title {
+  font-family: var(--serif); font-size: clamp(30px,5vw,48px);
+  font-weight: 600; color: #fff; line-height: 1.15; margin-bottom: 1rem;
+}
+.cta-body { font-size: 15px; color: rgba(255,255,255,.8); margin-bottom: 2.5rem; }
+.cta-btns { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.cta-btn-white {
+  font-size: 13px; font-weight: 500;
+  background: #fff; color: var(--teal-dark);
+  padding: 12px 28px; border-radius: 999px;
+  text-decoration: none; transition: transform .15s;
+}
+.cta-btn-white:hover { transform: translateY(-1px); }
+.cta-btn-outline {
+  font-size: 13px; font-weight: 400;
+  background: transparent; color: #fff;
+  border: 1.5px solid rgba(255,255,255,.5);
+  padding: 12px 24px; border-radius: 999px;
+  text-decoration: none; transition: border-color .2s;
+}
+.cta-btn-outline:hover { border-color: #fff; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink); color: rgba(255,255,255,.5);
+  padding: 3rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1.5rem;
+}
+.footer-brand { font-family: var(--serif); font-size: 17px; font-weight: 600; color: #fff; }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { font-size: 12px; color: rgba(255,255,255,.4); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: #fff; }
+.footer-copy { font-size: 11px; }
+
+/* Animations on load */
+.hero-left > * {
+  opacity: 0; animation: fadeUp .7s ease both;
+}
+.hero-left > *:nth-child(1){animation-delay:.1s}
+.hero-left > *:nth-child(2){animation-delay:.2s}
+.hero-left > *:nth-child(3){animation-delay:.3s}
+.hero-left > *:nth-child(4){animation-delay:.4s}
+
+@media(max-width:900px){
+  nav{padding:0 1.25rem}
+  .nav-links{display:none}
+  .hero{grid-template-columns:1fr;padding:3rem 1.5rem;min-height:auto;gap:2.5rem}
+  section{padding:3.5rem 1.5rem}
+  .act-grid,.platform-grid,.stack-grid,.roadmap-row{grid-template-columns:1fr}
+  .journey-grid{grid-template-columns:1fr}
+  footer{padding:2rem 1.5rem;flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <span class="nav-dot"></span>
+    Kabar Baik
+  </a>
+  <ul class="nav-links">
+    <li><a href="#aktivitas">Aktivitas</a></li>
+    <li><a href="#perjalanan">Bergabung</a></li>
+    <li><a href="#platform">Platform</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+  </ul>
+  <a class="nav-cta" href="#bergabung">Ikut Komunitas</a>
+</nav>
+
+<!-- HERO -->
+<section style="padding:0;background:var(--cream);">
+<div class="hero">
+  <div class="hero-left">
+    <span class="hero-eyebrow">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block"></span>
+      GKJ & GKI Jawa Tengah · Komunitas Digital
+    </span>
+    <h1 class="hero-title">
+      Media yang<br><em>menghidupkan</em><br>kabar baik
+    </h1>
+    <p class="hero-body">
+      Platform podcast, radio streaming, dan literasi digital untuk membangun konektivitas jemaat lintas generasi di Jawa Tengah — diperkuat AI, digerakkan komunitas.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#bergabung">
+        Bergabung sekarang
+        <span>→</span>
+      </a>
+      <a class="btn-ghost" href="#aktivitas">
+        <span>▶</span> Dengarkan siaran
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!-- Radio card -->
+    <div class="radio-card">
+      <div class="radio-live">
+        <span class="live-dot"></span>
+        <span class="live-label">SIARAN LIVE</span>
+      </div>
+      <div class="radio-title">Renungan Pagi Bersama</div>
+      <div class="radio-sub">Pdt. Elia Suryo · GKJ Purwokerto</div>
+      <div class="radio-waveform">
+        <div class="wave-bar"></div><div class="wave-bar"></div>
+        <div class="wave-bar"></div><div class="wave-bar"></div>
+        <div class="wave-bar"></div><div class="wave-bar"></div>
+        <div class="wave-bar"></div><div class="wave-bar"></div>
+        <div class="wave-bar"></div><div class="wave-bar"></div>
+      </div>
+      <div class="radio-controls">
+        <button class="play-btn">▶</button>
+        <div class="radio-prog">
+          <div class="prog-bar-bg"><div class="prog-bar-fill"></div></div>
+          <div class="prog-time">18:24 / 48:00</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stat strip -->
+    <div class="stat-strip">
+      <div class="stat-item">
+        <div class="stat-num">47+</div>
+        <div class="stat-label">Gereja aktif</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">320+</div>
+        <div class="stat-label">Episode podcast</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">12K</div>
+        <div class="stat-label">Jemaat terhubung</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- AKTIVITAS -->
+<section class="act-section" id="aktivitas">
+<div class="sec-inner">
+  <div class="act-header">
+    <div>
+      <div class="sec-eyebrow">program unggulan</div>
+      <h2 class="sec-title">Empat Aktivitas<br>Kabar Baik</h2>
+    </div>
+    <p class="sec-body">Bukan sekadar pendengar — jadilah bagian dari komunitas yang menciptakan, berbagi, dan menghidupkan kabar baik.</p>
+  </div>
+  <div class="act-grid">
+    <div class="act-card c1">
+      <div class="act-icon-wrap ai1">✦</div>
+      <div class="act-num">AKTIVITAS 01</div>
+      <div class="act-title">Kabar Media & AI</div>
+      <div class="act-desc">Gunakan AI generatif untuk membuat konten iman yang relevan — renungan, artikel, caption — dan sebarkan ke banyak platform sekaligus, secara otonom.</div>
+      <div class="act-tags">
+        <span class="act-tag">AI generatif</span>
+        <span class="act-tag">multi-platform</span>
+        <span class="act-tag">otomatisasi konten</span>
+      </div>
+    </div>
+    <div class="act-card c2">
+      <div class="act-icon-wrap ai2">⟳</div>
+      <div class="act-num">AKTIVITAS 02</div>
+      <div class="act-title">Kabar Intergenerasi</div>
+      <div class="act-desc">Ruang kolaborasi nyata antara generasi — hikmat senior bertemu kreativitas pemuda dalam pelayanan digital yang utuh dan saling memperkuat.</div>
+      <div class="act-tags">
+        <span class="act-tag">mentoring</span>
+        <span class="act-tag">lintas usia</span>
+        <span class="act-tag">pelatihan digital</span>
+      </div>
+    </div>
+    <div class="act-card c3">
+      <div class="act-icon-wrap ai3">◉</div>
+      <div class="act-num">AKTIVITAS 03</div>
+      <div class="act-title">Kabar Digital Ministri</div>
+      <div class="act-desc">Wadah kreatif bagi pemuda gereja untuk memproduksi podcast, diskusi iman, dan konten kekinian. Suaramu adalah pelayananmu.</div>
+      <div class="act-tags">
+        <span class="act-tag">podcast</span>
+        <span class="act-tag">radio streaming</span>
+        <span class="act-tag">konten pemuda</span>
+      </div>
+    </div>
+    <div class="act-card c4">
+      <div class="act-icon-wrap ai4">◈</div>
+      <div class="act-num">AKTIVITAS 04</div>
+      <div class="act-title">Kabar Kolaborasi</div>
+      <div class="act-desc">Jejaring ekumenis antar gereja dan mitra strategis — berbagi sumber daya, program bersama, dan memperkuat kesaksian di Jawa Tengah.</div>
+      <div class="act-tags">
+        <span class="act-tag">ekumenis</span>
+        <span class="act-tag">sinode</span>
+        <span class="act-tag">mitra strategis</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- JOURNEY -->
+<section class="journey-section" id="perjalanan">
+<div class="sec-inner">
+  <div class="sec-eyebrow">cara bergabung</div>
+  <h2 class="sec-title">Dari kenalan,<br>hingga bergerak bersama</h2>
+  <p class="sec-body">Tiga tahap sederhana — siapa pun bisa mulai, di mana pun berada, tanpa perlu keahlian teknis dulu.</p>
+  <div class="journey-grid">
+    <div class="journey-card">
+      <div class="journey-num">01</div>
+      <div class="journey-icon ji1">📣</div>
+      <div class="journey-phase jp1">TAHAP PERTAMA · SOSIALISASI</div>
+      <div class="journey-title">Kenali & temukan komunitasmu</div>
+      <div class="journey-body">Pintu masuk pertama — agar jemaat tahu ada komunitas digital yang bisa dimasuki dan berkontribusi.</div>
+      <ul class="journey-list">
+        <li>Siaran radio & podcast perkenalan</li>
+        <li>Media sosial aktif dengan cerita jemaat</li>
+        <li>Temu komunitas di gereja lokal</li>
+        <li>Newsletter & WA blast mingguan</li>
+      </ul>
+    </div>
+    <div class="journey-card">
+      <div class="journey-num">02</div>
+      <div class="journey-icon ji2">🎓</div>
+      <div class="journey-phase jp2">TAHAP KEDUA · PELATIHAN</div>
+      <div class="journey-title">Diperlengkapi untuk berkarya</div>
+      <div class="journey-body">Bekal nyata sebelum bergerak — praktis, berbasis alat yang sudah dimiliki jemaat.</div>
+      <ul class="journey-list">
+        <li>Workshop podcast — rekam & upload</li>
+        <li>Literasi AI untuk konten iman</li>
+        <li>Produksi konten hanya dari HP</li>
+        <li>Teknik scripting & hosting siaran</li>
+      </ul>
+    </div>
+    <div class="journey-card">
+      <div class="journey-num">03</div>
+      <div class="journey-icon ji3">🔨</div>
+      <div class="journey-phase jp3">TAHAP KETIGA · BELAJAR SAMBIL BERBUAT</div>
+      <div class="journey-title">Langsung berkarya & bertumbuh</div>
+      <div class="journey-body">Laboratorium hidup — tiap produksi adalah pembelajaran, tiap episode adalah pelayanan nyata.</div>
+      <ul class="journey-list">
+        <li>Produksi episode nyata bersama tim</li>
+        <li>Refleksi & review mingguan</li>
+        <li>Mentoring sesama anggota</li>
+        <li>Karya masuk platform resmi komunitas</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- PLATFORM -->
+<section class="platform-section" id="platform">
+<div class="sec-inner">
+  <div class="sec-eyebrow">infrastruktur digital</div>
+  <h2 class="sec-title">Tiga Pilar Platform</h2>
+  <p class="sec-body">Ekosistem digital terintegrasi yang melayani jemaat dari mana saja — web, mobile, hingga kecerdasan buatan.</p>
+  <div class="platform-grid">
+    <div class="plat-card">
+      <div class="plat-head">
+        <div class="plat-icon-lg pg1">🌐</div>
+        <div class="plat-name">Web Portal</div>
+        <div class="plat-tagline">Hub publik komunitas digital</div>
+      </div>
+      <div class="plat-features">
+        <div class="plat-feat"><span class="feat-dot fd1"></span>Radio streaming live</div>
+        <div class="plat-feat"><span class="feat-dot fd1"></span>Podcast directory & arsip</div>
+        <div class="plat-feat"><span class="feat-dot fd1"></span>Blog & renungan harian</div>
+        <div class="plat-feat"><span class="feat-dot fd1"></span>Kalender & agenda gereja</div>
+        <div class="plat-feat"><span class="feat-dot fd1"></span>Direktori GKJ/GKI Jateng</div>
+      </div>
+    </div>
+    <div class="plat-card">
+      <div class="plat-head">
+        <div class="plat-icon-lg pg2">📱</div>
+        <div class="plat-name">Mobile App</div>
+        <div class="plat-tagline">Komunitas jemaat di genggaman</div>
+      </div>
+      <div class="plat-features">
+        <div class="plat-feat"><span class="feat-dot fd2"></span>Player radio & podcast offline</div>
+        <div class="plat-feat"><span class="feat-dot fd2"></span>Forum & komunitas jemaat</div>
+        <div class="plat-feat"><span class="feat-dot fd2"></span>Notifikasi ibadah & event</div>
+        <div class="plat-feat"><span class="feat-dot fd2"></span>Renungan & leksionari harian</div>
+        <div class="plat-feat"><span class="feat-dot fd2"></span>Modul literasi digital</div>
+      </div>
+    </div>
+    <div class="plat-card">
+      <div class="plat-head">
+        <div class="plat-icon-lg pg3">🧠</div>
+        <div class="plat-name">Wiki AI</div>
+        <div class="plat-tagline">Kecerdasan berbasis iman</div>
+      </div>
+      <div class="plat-features">
+        <div class="plat-feat"><span class="feat-dot fd3"></span>Chatbot teologi GKJ/GKI</div>
+        <div class="plat-feat"><span class="feat-dot fd3"></span>Studio konten AI otomatis</div>
+        <div class="plat-feat"><span class="feat-dot fd3"></span>Arsip & transkripsi khotbah</div>
+        <div class="plat-feat"><span class="feat-dot fd3"></span>Wiki sejarah & dokumen sinode</div>
+        <div class="plat-feat"><span class="feat-dot fd3"></span>Dashboard admin terintegrasi</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- AI STACK -->
+<section class="stack-section">
+<div class="sec-inner">
+  <div class="sec-eyebrow">teknologi</div>
+  <h2 class="sec-title">Ditenagai AI,<br>digerakkan jemaat</h2>
+  <p class="sec-body">Arsitektur AI berlapis yang bekerja di balik layar — efisien, hemat biaya, dan bisa berjalan di VPS komunitas sendiri.</p>
+  <div class="stack-grid">
+    <div class="stack-card">
+      <span class="stack-tag st1">LOCAL LLM</span>
+      <div class="stack-title">Nous Hermes / Qwen</div>
+      <div class="stack-body">Agent konten harian — generate renungan, caption sosial media, dan ringkasan podcast langsung di VPS lokal tanpa biaya API.</div>
+    </div>
+    <div class="stack-card">
+      <span class="stack-tag st2">CLAUDE API</span>
+      <div class="stack-title">Orchestrator & Analisis</div>
+      <div class="stack-body">Menangani tugas kompleks — chatbot teologi, studio konten berkualitas tinggi, dan analisis kebutuhan literasi jemaat.</div>
+    </div>
+    <div class="stack-card">
+      <span class="stack-tag st3">RAG · ChromaDB</span>
+      <div class="stack-title">Knowledge Base GKJ/GKI</div>
+      <div class="stack-body">Dokumen tata gereja, pengakuan iman, sejarah sinode, dan arsip khotbah — dijadikan sumber pengetahuan AI yang akurat.</div>
+    </div>
+    <div class="stack-card">
+      <span class="stack-tag st4">BROADCAST</span>
+      <div class="stack-title">LibreTime + Icecast2</div>
+      <div class="stack-body">Infrastruktur radio streaming terbuka — jadwal otomatis, playlist ibadah, dan siaran live 24/7 dari VPS komunitas.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap-section" id="roadmap">
+<div class="sec-inner">
+  <div class="sec-eyebrow">tahapan pengembangan</div>
+  <h2 class="sec-title">Roadmap Menuju<br>Ekosistem Penuh</h2>
+  <p class="sec-body">Dibangun bertahap — dimulai dari fondasi yang kuat, berkembang menjadi ekosistem digital komunitas yang lengkap.</p>
+  <div class="roadmap-row">
+    <div class="rm-card">
+      <div class="rm-accent ra1"></div>
+      <div class="rm-phase">FASE 1 · BULAN 1–2</div>
+      <div class="rm-title">Fondasi & Sosialisasi</div>
+      <div class="rm-chips">
+        <span class="rm-chip">Web portal Next.js</span>
+        <span class="rm-chip">Radio streaming live</span>
+        <span class="rm-chip">Media sosial aktif</span>
+        <span class="rm-chip">Temu komunitas perdana</span>
+      </div>
+    </div>
+    <div class="rm-card">
+      <div class="rm-accent ra2"></div>
+      <div class="rm-phase">FASE 2 · BULAN 3–4</div>
+      <div class="rm-title">Pelatihan & Wiki AI</div>
+      <div class="rm-chips">
+        <span class="rm-chip">Workshop podcast</span>
+        <span class="rm-chip">Chatbot teologi RAG</span>
+        <span class="rm-chip">Studio konten AI</span>
+        <span class="rm-chip">Arsip khotbah</span>
+      </div>
+    </div>
+    <div class="rm-card">
+      <div class="rm-accent ra3"></div>
+      <div class="rm-phase">FASE 3 · BULAN 5–6</div>
+      <div class="rm-title">Produksi & Mobile</div>
+      <div class="rm-chips">
+        <span class="rm-chip">Episode perdana live</span>
+        <span class="rm-chip">Mobile app / PWA</span>
+        <span class="rm-chip">Forum jemaat</span>
+        <span class="rm-chip">Refleksi komunitas</span>
+      </div>
+    </div>
+    <div class="rm-card">
+      <div class="rm-accent ra4"></div>
+      <div class="rm-phase">FASE 4 · BULAN 7+</div>
+      <div class="rm-title">Ekosistem Penuh</div>
+      <div class="rm-chips">
+        <span class="rm-chip">Multi-agent AI</span>
+        <span class="rm-chip">Jejaring sinode</span>
+        <span class="rm-chip">Dashboard analytics</span>
+        <span class="rm-chip">Persembahan digital</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="bergabung" style="padding:5rem 4rem">
+<div class="sec-inner" style="max-width:680px;margin:0 auto">
+  <h2 class="cta-title">Kabar baik ini<br>milik kita bersama</h2>
+  <p class="cta-body">Satu langkah kecil — dengarkan siaran, ikut pelatihan, atau bawa ide ke komunitas. Setiap suara berarti.</p>
+  <div class="cta-btns">
+    <a class="cta-btn-white" href="#">Daftar sebagai anggota</a>
+    <a class="cta-btn-outline" href="#">Dengarkan podcast</a>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Kabar Baik</div>
+    <div style="font-size:11px;margin-top:4px">Komunitas Digital GKJ & GKI Jawa Tengah</div>
+  </div>
+  <div class="footer-links">
+    <a href="#">Tentang</a>
+    <a href="#">Podcast</a>
+    <a href="#">Radio</a>
+    <a href="#">Bergabung</a>
+    <a href="#">Kontak</a>
+  </div>
+  <div class="footer-copy">© 2025 Kabar Baik · tanganterbukamedia.com</div>
+</footer>
+
+<script>
+const playBtn = document.querySelector('.play-btn');
+let playing = false;
+playBtn.addEventListener('click', () => {
+  playing = !playing;
+  playBtn.textContent = playing ? '⏸' : '▶';
+  document.querySelectorAll('.wave-bar').forEach(b => {
+    b.style.animationPlayState = playing ? 'running' : 'paused';
+  });
+});
+document.querySelectorAll('.wave-bar').forEach(b => {
+  b.style.animationPlayState = 'paused';
+});
+</script>
+</body>
+</html>
+<!-- ═══════════════════════════════════════════════════
+     PATCH: Login Modal + Komunitas Wilayah Klasikal
+     ═══════════════════════════════════════════════════ -->
+<style>
+/* ── MODAL OVERLAY ── */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 999;
+  background: rgba(15,23,42,.55);
+  backdrop-filter: blur(6px);
+  align-items: center; justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+
+.modal-box {
+  background: var(--white); border-radius: 20px;
+  border: 0.5px solid var(--border);
+  width: min(420px, calc(100vw - 2rem));
+  padding: 2.5rem;
+  animation: modalIn .3s cubic-bezier(.34,1.56,.64,1) both;
+  position: relative;
+}
+@keyframes modalIn {
+  from{opacity:0;transform:scale(.92) translateY(20px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+.modal-close {
+  position: absolute; top: 1.25rem; right: 1.25rem;
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 0.5px solid var(--border); background: var(--cream);
+  cursor: pointer; font-size: 16px; color: var(--ink-muted);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+}
+.modal-close:hover { background: #f0f0f0; }
+
+.modal-logo {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--serif); font-size: 18px; font-weight: 600;
+  margin-bottom: 1.75rem;
+}
+.modal-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
+.modal-title { font-family: var(--serif); font-size: 24px; font-weight: 600; margin-bottom: 4px; }
+.modal-sub { font-size: 13px; color: var(--ink-muted); margin-bottom: 1.75rem; }
+
+.modal-tabs {
+  display: flex; gap: 0; margin-bottom: 1.5rem;
+  background: var(--cream); border-radius: 8px; padding: 3px;
+}
+.modal-tab {
+  flex: 1; padding: 7px; font-size: 12px; font-weight: 500;
+  border: none; background: transparent; cursor: pointer;
+  border-radius: 6px; color: var(--ink-muted); transition: all .15s;
+}
+.modal-tab.active { background: var(--white); color: var(--ink); box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+
+.form-group { margin-bottom: 1rem; }
+.form-label { font-size: 11px; font-weight: 500; color: var(--ink-muted); margin-bottom: 5px; display: block; letter-spacing: .06em; }
+.form-input {
+  width: 100%; padding: 10px 14px; border-radius: 8px;
+  border: 0.5px solid var(--border-strong); background: var(--white);
+  font-family: var(--sans); font-size: 13px; color: var(--ink);
+  outline: none; transition: border-color .2s;
+}
+.form-input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(29,158,117,.1); }
+.form-select {
+  width: 100%; padding: 10px 14px; border-radius: 8px;
+  border: 0.5px solid var(--border-strong); background: var(--white);
+  font-family: var(--sans); font-size: 13px; color: var(--ink);
+  outline: none; cursor: pointer; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+}
+.form-select:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(29,158,117,.1); }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.forgot-link { font-size: 11px; color: var(--teal); text-decoration: none; float: right; margin-top: -8px; margin-bottom: 1rem; display: block; text-align: right; }
+.btn-submit {
+  width: 100%; padding: 12px; border-radius: 999px;
+  background: var(--teal); color: #fff; border: none;
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: background .2s, transform .15s;
+  margin-top: .5rem;
+}
+.btn-submit:hover { background: var(--teal-dark); transform: translateY(-1px); }
+.modal-divider {
+  display: flex; align-items: center; gap: 12px;
+  margin: 1.25rem 0; font-size: 11px; color: var(--ink-faint);
+}
+.modal-divider::before, .modal-divider::after {
+  content: ''; flex: 1; height: 0.5px; background: var(--border);
+}
+.btn-wa {
+  width: 100%; padding: 11px; border-radius: 999px;
+  background: #25D366; color: #fff; border: none;
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: opacity .2s;
+}
+.btn-wa:hover { opacity: .88; }
+.panel-login, .panel-daftar { display: none; }
+.panel-login.active, .panel-daftar.active { display: block; }
+
+/* ── KOMUNITAS KLASIKAL SECTION ── */
+.klasikal-section { background: var(--white); padding: 5rem 4rem; }
+.klasikal-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
+.klasikal-filter {
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+.filter-btn {
+  font-size: 11px; font-weight: 500; padding: 5px 14px;
+  border-radius: 999px; border: 0.5px solid var(--border);
+  background: var(--cream); color: var(--ink-muted); cursor: pointer;
+  transition: all .15s;
+}
+.filter-btn.active, .filter-btn:hover {
+  background: var(--teal-light); color: var(--teal-dark);
+  border-color: rgba(29,158,117,.3);
+}
+
+.klasikal-grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 16px;
+}
+.klas-card {
+  border: 0.5px solid var(--border); border-radius: var(--rl);
+  overflow: hidden; transition: border-color .2s, transform .2s;
+}
+.klas-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+
+.klas-head {
+  padding: 1.25rem 1.25rem .9rem;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.klas-badge {
+  width: 44px; height: 44px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.kb1{background:#E1F5EE} .kb2{background:#EFF6FF} .kb3{background:#FEF3C7}
+.kb4{background:#EEEDFE} .kb5{background:#FCE7F3} .kb6{background:#ECFDF5}
+
+.klas-info { flex: 1; min-width: 0; }
+.klas-region {
+  font-size: 10px; font-weight: 500; letter-spacing: .08em;
+  color: var(--ink-faint); margin-bottom: 3px;
+}
+.klas-name { font-family: var(--serif); font-size: 17px; font-weight: 600; line-height: 1.2; }
+
+.klas-stats {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  border-top: 0.5px solid var(--border);
+  border-bottom: 0.5px solid var(--border);
+}
+.kstat {
+  padding: .6rem .5rem; text-align: center;
+  border-right: 0.5px solid var(--border);
+}
+.kstat:last-child { border-right: none; }
+.kstat-num { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--teal); }
+.kstat-label { font-size: 9px; color: var(--ink-faint); margin-top: 1px; }
+
+.klas-studios { padding: .9rem 1.25rem; }
+.kstudio-label { font-size: 10px; font-weight: 500; letter-spacing: .08em; color: var(--ink-faint); margin-bottom: 8px; }
+.studio-list { display: flex; flex-direction: column; gap: 5px; }
+.studio-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 8px; border-radius: 7px;
+  background: var(--cream);
+  font-size: 11px; color: var(--ink-muted);
+  transition: background .15s;
+}
+.studio-item:hover { background: var(--teal-light); color: var(--teal-dark); cursor: pointer; }
+.studio-dot {
+  width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+}
+.sd-online { background: #22C55E; }
+.sd-offline { background: #D1D5DB; }
+.studio-name { flex: 1; font-weight: 400; }
+.studio-eps { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); }
+
+.klas-footer {
+  padding: .75rem 1.25rem 1.25rem;
+  display: flex; gap: 8px;
+}
+.klas-btn {
+  flex: 1; padding: 7px; border-radius: 999px;
+  font-size: 11px; font-weight: 500; cursor: pointer;
+  border: 0.5px solid var(--border); background: var(--cream);
+  color: var(--ink-muted); transition: all .15s;
+  text-align: center;
+}
+.klas-btn:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-light); }
+.klas-btn.primary {
+  background: var(--teal); color: #fff; border-color: var(--teal);
+}
+.klas-btn.primary:hover { background: var(--teal-dark); }
+
+/* ── MEMBER BADGE ── */
+.member-strip {
+  background: var(--cream); border-top: 0.5px solid var(--border);
+  padding: 1.25rem 4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+.member-text { font-size: 13px; color: var(--ink-muted); }
+.member-text strong { color: var(--ink); }
+.member-btn {
+  font-size: 12px; font-weight: 500; padding: 8px 20px;
+  border-radius: 999px; background: var(--teal); color: #fff;
+  border: none; cursor: pointer; transition: background .2s;
+}
+.member-btn:hover { background: var(--teal-dark); }
+
+/* Nav masuk button */
+.nav-masuk {
+  font-size: 12px; font-weight: 500;
+  background: transparent; color: var(--ink-muted);
+  padding: 7px 16px; border-radius: 999px;
+  border: 0.5px solid var(--border-strong);
+  cursor: pointer; margin-right: 6px;
+  transition: all .2s;
+}
+.nav-masuk:hover { color: var(--ink); border-color: var(--ink); }
+
+@media(max-width:900px){
+  .klasikal-section{padding:3.5rem 1.5rem}
+  .klasikal-grid{grid-template-columns:1fr}
+  .member-strip{padding:1rem 1.5rem}
+}
+</style>
+
+<!-- ── LOGIN MODAL ── -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="modal-logo">
+      <span class="modal-logo-dot"></span>
+      Kabar Baik
+    </div>
+    <h2 class="modal-title">Selamat datang</h2>
+    <p class="modal-sub">Masuk atau daftar sebagai anggota komunitas</p>
+
+    <div class="modal-tabs">
+      <button class="modal-tab active" onclick="switchTab('login')">Masuk</button>
+      <button class="modal-tab" onclick="switchTab('daftar')">Daftar</button>
+    </div>
+
+    <!-- PANEL MASUK -->
+    <div class="panel-login active" id="panel-login">
+      <div class="form-group">
+        <label class="form-label">EMAIL / NOMOR JEMAAT</label>
+        <input class="form-input" type="text" placeholder="email@gereja.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">KATA SANDI</label>
+        <input class="form-input" type="password" placeholder="••••••••">
+        <a class="forgot-link" href="#">Lupa kata sandi?</a>
+      </div>
+      <button class="btn-submit">Masuk ke komunitas</button>
+      <div class="modal-divider">atau masuk dengan</div>
+      <button class="btn-wa">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.847L0 24l6.335-1.508A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.937 0-3.748-.5-5.328-1.377l-.38-.225-3.762.895.952-3.671-.247-.393A9.934 9.934 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Masuk via WhatsApp
+      </button>
+    </div>
+
+    <!-- PANEL DAFTAR -->
+    <div class="panel-daftar" id="panel-daftar">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">NAMA DEPAN</label>
+          <input class="form-input" type="text" placeholder="Sari">
+        </div>
+        <div class="form-group">
+          <label class="form-label">NAMA BELAKANG</label>
+          <input class="form-input" type="text" placeholder="Wulandari">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">EMAIL</label>
+        <input class="form-input" type="email" placeholder="email@gereja.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">WILAYAH KLASIKAL</label>
+        <select class="form-select">
+          <option value="">— Pilih wilayah klasikal —</option>
+          <option>Klasikal Semarang</option>
+          <option>Klasikal Banyumas</option>
+          <option>Klasikal Kedu</option>
+          <option>Klasikal Surakarta</option>
+          <option>Klasikal Pati</option>
+          <option>Klasikal Kendal–Demak</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">STUDIO / JEMAAT LOKAL</label>
+        <select class="form-select">
+          <option value="">— Pilih studio / jemaat —</option>
+          <option>Studio GKJ Purwokerto</option>
+          <option>Studio GKJ Yogyakarta Utara</option>
+          <option>Studio GKI Semarang Barat</option>
+          <option>Studio GKJ Surakarta</option>
+          <option>Bergabung tanpa studio</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">KATA SANDI</label>
+        <input class="form-input" type="password" placeholder="Min. 8 karakter">
+      </div>
+      <button class="btn-submit">Daftar sebagai anggota</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── MEMBER STRIP (before klasikal section) ── -->
+<div class="member-strip">
+  <div class="member-text">
+    <strong>Sudah punya akun?</strong> Masuk untuk mengakses konten studio lokal dan komunitas klasikal Anda.
+  </div>
+  <button class="member-btn" onclick="openModal()">Masuk / Daftar</button>
+</div>
+
+<!-- ── KOMUNITAS WILAYAH KLASIKAL ── -->
+<section class="klasikal-section" id="komunitas">
+<div class="sec-inner">
+  <div class="klasikal-header">
+    <div>
+      <div class="sec-eyebrow">jaringan komunitas</div>
+      <h2 class="sec-title">Wilayah Klasikal<br>& Studio Lokal</h2>
+      <p class="sec-body" style="margin-top:.5rem">Komunitas berbasis wilayah gereja — setiap klasikal memiliki studio produksi lokal dari jemaat-jemaat yang aktif berkarya.</p>
+    </div>
+    <div class="klasikal-filter">
+      <button class="filter-btn active" onclick="filterKlasikal(this,'all')">Semua</button>
+      <button class="filter-btn" onclick="filterKlasikal(this,'aktif')">Studio Aktif</button>
+      <button class="filter-btn" onclick="filterKlasikal(this,'gkj')">GKJ</button>
+      <button class="filter-btn" onclick="filterKlasikal(this,'gki')">GKI</button>
+    </div>
+  </div>
+
+  <div class="klasikal-grid" id="klasikalGrid">
+
+    <!-- Klasikal 1 -->
+    <div class="klas-card" data-type="gkj aktif">
+      <div class="klas-head">
+        <div class="klas-badge kb1">🏔️</div>
+        <div class="klas-info">
+          <div class="klas-region">WILAYAH KLASIKAL · GKJ</div>
+          <div class="klas-name">Klasikal Banyumas</div>
+        </div>
+      </div>
+      <div class="klas-stats">
+        <div class="kstat"><div class="kstat-num">8</div><div class="kstat-label">Studio</div></div>
+        <div class="kstat"><div class="kstat-num">147</div><div class="kstat-label">Anggota</div></div>
+        <div class="kstat"><div class="kstat-num">62</div><div class="kstat-label">Episode</div></div>
+      </div>
+      <div class="klas-studios">
+        <div class="kstudio-label">STUDIO AKTIF</div>
+        <div class="studio-list">
+          <div class="studio-item">
+            <span class="studio-dot sd-online"></span>
+            <span class="studio-name">Studio GKJ Purwokerto</span>
+            <span class="studio-eps">24 eps</span>
+          </div>
+          <div class="studio-item">
+            <span class="studio-dot sd-online"></span>
+            <span class="studio-name">Studio GKJ Banyumas</span>
+            <span class="studio-eps">18 eps</span>
+          </div>
+          <div class="studio-item">
+            <span class="studio-dot sd-online"></span>
+            <span class="studio-name">Studio GKJ Cilacap</span>
+            <span class="studio-eps">12 eps</span>
+          </div>
+          <div class="studio-item">
+            <span class="studio-dot sd-offline"></span>
+            <span class="studio-name">Studio GKJ Kebumen</span>
+            <span class="studio-eps">8 eps</span>
+          </div>
+        </div>
+      </div>
+      <div class="klas-footer">
+        <button class="klas-btn" onclick="openModal()">Lihat komunitas</button>
+        <button class="klas-btn primary" onclick="openModal()">Bergabung</button>
+      </div>
+    </div>
+
+    <!-- Klasikal 2 -->
+    <div class="klas-card" data-type="gkj gki aktif">
+      <div class="klas-head">
+        <div class="klas-badge kb2">🌊</div>
+        <div class="klas-info">
+          <div class="klas-region">WILAYAH KLASIKAL · GKJ & GKI</div>
+          <div class="klas-name">Klasikal Semarang</div>
+        </div>
+      </div>
+      <div class="klas-stats">
+        <div class="kstat"><div class="kstat-num">11</div><div class="kstat-label">Studio</div></div>
+        <div class="kstat"><div class="kstat-num">219</div><div class="kstat-label">Anggota</div></div>
+        <div class="kstat"><div class="kstat-num">94</div><div class="kstat-label">Episode</div></div>
+      </div>
+      <div class="klas-studios">
+        <div class="kstudio-label">STUDIO AKTIF</div>
+        <div class="studio-list">
+          <div class="studio-item">
+            <span class="studio-dot sd-online"></span>
+            <span class="studio-name">Studio GKI Semarang Barat</span>
+            <span class="studio-eps">31 eps</span>
+          </div>
+          <div class="studio-item">
+            <span class="studio-dot sd-online"></span>
+            <span class="studio-name">Studio GKJ Semarang Timur</span>
+            <span class="studio-eps">27 eps</span>
+          </div>
+          <div class="studio-item">
+            <span class="studio-dot sd-online"></span>
+            <span class="studio-name">Studio GKI Ungaran</span>
+            <span class="studio-eps">19 eps</span>
+          </div>
+          <div class="studio-item">
+            <span class="studio-dot sd-offline"></span>
+            <span class="studio-name">Studio GKJ Salatiga</span>
+            <span class="studio-eps">17 eps</span>
+          </div>
+        </div>
+      </div>
+      <div class="klas-footer">
+        <button class="klas-btn" onclick="openModal()">Lihat komunitas</button>
+        <button class="klas-btn primary" onclick="openModal()">Bergabung</button>
+      </div>
+    </div>
+
+    <!-- Klasikal 3 -->
+    <div class="klas-card" data-type="gkj aktif">
+      <div class="klas-head">
+        <div class="klas-badge kb3">🌾</div>
+        <div class="klas-info">
+          <div class="klas-region">WILAYAH KLASIKAL · GKJ</div>
+          <div class="klas-name">Klasikal Kedu</div>
+        </div>
+      </div>
+      <div class="klas-stats">
+        <div class="kstat"><div class="kstat-num">6</div><div class="kstat-label">Studio</div></div>
+        <div class="kstat"><div class="kstat-num">98</div><div class="kstat-label">Anggota</div></div>
+        <div class="kstat"><div class="kstat-num">43</div><div class="kstat-label">Episode</div></div>
+      </div>
+      <div class="klas-studios">
+        <div class="kstudio-label">STUDIO AKTIF</div>
+        <div class="studio-list">
+          <div class="studio-item">
+            <span class="studio-dot sd-online"></span>
+            <span class="studio-name">Studio GKJ Magelang</span>
+            <span class="studio-eps">22 eps</span>
+          </div>
+          <div class="studio-item">
+            <span class="studio-dot sd-online"></span>
+            <span class="studio-name">Studio GKJ Temanggung</span>
+            <span class="studio-eps">15 eps</span>
+          </div>
+          <div class="studio-item">
+            <span class="studio-dot sd-offline"></span>
+            <span class="studio-name">Studio GKJ Wonosobo</span>
+            <span class="studio-eps">6 eps</span>
+          </div>
+        </div>
+      </div>
+      <div class="klas-footer">
+        <button class="klas-btn" onclick="openModal()">Lihat komunitas</button>
+        <button class="klas-btn primary" onclick="openModal()">Bergabung</button>
+      </div>
+    </div>
+
+    <!-- Klasikal 4 -->
+    <div class="klas-card" data-type="gkj aktif">
+      <div class="klas-head">
+        <div class="klas-badge kb4">🏛️</div>
+        <div class="klas-info">
+          <div class="klas-region">WILAYAH KLASIKAL · GKJ</div>
+          <div class="klas-name">Klasikal Surakarta</div>
+        </div>
+      </div>
+      <div class="klas-stats">
+        <div class="kstat"><div class="kstat-num">9</div><div class="kstat-label">Studio</div></div>
+        <div class="kstat"><div class="kstat-num">183</div><div class="kstat-label">Anggota</div></div>
+        <div class="kstat"><div class="kstat-num">78</div><div class="kstat-label">Episode</div></div>
+      </div>
+      <div class="klas-studios">
+        <div class="kstudio-label">STUDIO AKTIF</div>
+        <div class="studio-list">
+          <div class="studio-item">
+            <span class="studio-dot sd-online"></span>
+            <span class="studio-name">Studio GKJ Surakarta</span>
+            <span class="studio-eps">35 eps</span>
+          </div>
+          <div class="studio-item">
+            <span class="studio-dot sd-online"></span>
+            <span class="studio-name">Studio GKJ Klaten</span>
+            <span class="studio-eps">21 eps</span>
+          </div>
+          <div class="studio-item">
+            <span class="studio-dot sd-online"></span>
+            <span class="studio-name">Studio GKJ Boyolali</span>
+            <span class="studio-eps">14 eps</span>
+          </div>
+          <div class="studio-item">
+            <span class="studio-dot sd-offline"></span>
+            <span class="studio-name">Studio GKJ Sragen</span>
+            <span class="studio-eps">8 eps</span>
+          </div>
+        </div>
+      </div>
+      <div class="klas-footer">
+        <button class="klas-btn" onclick="openModal()">Lihat komunitas</button>
+        <button class="klas-btn primary" onclick="openModal()">Bergabung</button>
+      </div>
+    </div>
+
+    <!-- Klasikal 5 -->
+    <div class="klas-card" data-type="gki aktif">
+      <div class="klas-head">
+        <div class="klas-badge kb5">🌺</div>
+        <div class="klas-info">
+          <div class="klas-region">WILAYAH KLASIKAL · GKI</div>
+          <div class="klas-name">Klasikal Kendal–Demak</div>
+        </div>
+      </div>
+      <div class="klas-stats">
+        <div class="kstat"><div class="kstat-num">5</div><div class="kstat-label">Studio</div></div>
+        <div class="kstat"><div class="kstat-num">76</div><div class="kstat-label">Anggota</div></div>
+        <div class="kstat"><div class="kstat-num">29</div><div class="kstat-label">Episode</div></div>
+      </div>
+      <div class="klas-studios">
+        <div class="kstudio-label">STUDIO AKTIF</div>
+        <div class="studio-list">
+          <div class="studio-item">
+            <span class="studio-dot sd-online"></span>
+            <span class="studio-name">Studio GKI Kendal</span>
+            <span class="studio-eps">17 eps</span>
+          </div>
+          <div class="studio-item">
+            <span class="studio-dot sd-online"></span>
+            <span class="studio-name">Studio GKI Demak</span>
+            <span class="studio-eps">12 eps</span>
+          </div>
+          <div class="studio-item">
+            <span class="studio-dot sd-offline"></span>
+            <span class="studio-name">Studio GKI Weleri</span>
+            <span class="studio-eps">0 eps</span>
+          </div>
+        </div>
+      </div>
+      <div class="klas-footer">
+        <button class="klas-btn" onclick="openModal()">Lihat komunitas</button>
+        <button class="klas-btn primary" onclick="openModal()">Bergabung</button>
+      </div>
+    </div>
+
+    <!-- Klasikal 6 -->
+    <div class="klas-card" data-type="gkj aktif">
+      <div class="klas-head">
+        <div class="klas-badge kb6">🌿</div>
+        <div class="klas-info">
+          <div class="klas-region">WILAYAH KLASIKAL · GKJ</div>
+          <div class="klas-name">Klasikal Pati</div>
+        </div>
+      </div>
+      <div class="klas-stats">
+        <div class="kstat"><div class="kstat-num">7</div><div class="kstat-label">Studio</div></div>
+        <div class="kstat"><div class="kstat-num">112</div><div class="kstat-label">Anggota</div></div>
+        <div class="kstat"><div class="kstat-num">51</div><div class="kstat-label">Episode</div></div>
+      </div>
+      <div class="klas-studios">
+        <div class="kstudio-label">STUDIO AKTIF</div>
+        <div class="studio-list">
+          <div class="studio-item">
+            <span class="studio-dot sd-online"></span>
+            <span class="studio-name">Studio GKJ Pati</span>
+            <span class="studio-eps">26 eps</span>
+          </div>
+          <div class="studio-item">
+            <span class="studio-dot sd-online"></span>
+            <span class="studio-name">Studio GKJ Kudus</span>
+            <span class="studio-eps">18 eps</span>
+          </div>
+          <div class="studio-item">
+            <span class="studio-dot sd-offline"></span>
+            <span class="studio-name">Studio GKJ Jepara</span>
+            <span class="studio-eps">7 eps</span>
+          </div>
+        </div>
+      </div>
+      <div class="klas-footer">
+        <button class="klas-btn" onclick="openModal()">Lihat komunitas</button>
+        <button class="klas-btn primary" onclick="openModal()">Bergabung</button>
+      </div>
+    </div>
+
+  </div><!-- /klasikal-grid -->
+</div>
+</section>
+
+<script>
+/* Modal */
+function openModal(){ document.getElementById('loginModal').classList.add('open'); }
+function closeModal(){ document.getElementById('loginModal').classList.remove('open'); }
+document.getElementById('loginModal').addEventListener('click', function(e){
+  if(e.target === this) closeModal();
+});
+
+function switchTab(tab){
+  document.querySelectorAll('.modal-tab').forEach((t,i)=>{
+    t.classList.toggle('active', (tab==='login'&&i===0)||(tab==='daftar'&&i===1));
+  });
+  document.getElementById('panel-login').classList.toggle('active', tab==='login');
+  document.getElementById('panel-daftar').classList.toggle('active', tab==='daftar');
+}
+
+/* Nav: add "Masuk" button */
+const navCta = document.querySelector('.nav-cta');
+const masukBtn = document.createElement('button');
+masukBtn.className = 'nav-masuk';
+masukBtn.textContent = 'Masuk';
+masukBtn.onclick = openModal;
+navCta.parentNode.insertBefore(masukBtn, navCta);
+navCta.onclick = openModal;
+
+/* Filter klasikal */
+function filterKlasikal(btn, type){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.klas-card').forEach(card=>{
+    const t = card.dataset.type || '';
+    card.style.display = (type==='all' || t.includes(type)) ? '' : 'none';
+  });
+}
+
+/* keyboard esc */
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+</script>

@@ -1,0 +1,6 @@
+{
+  "name": "KbrBaik Arsitektur & AI Explorer",
+  "description": "Dashboard interaktif arsitektur KbrBaik, panduan infografis 4 pilar, simulasi otomatisasi data, dan taman bermain agen kecerdasan buatan Hermes (Hermes AI Sandbox & WikiAI Jabar Chatbot).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

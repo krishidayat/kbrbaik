@@ -1,0 +1,79 @@
+general:
+  public_url: https://radio.kbrbaik.live
+  api_key: 9T1QKBJTK8LE7BNYQ589
+  secret_key: ff6d4d5288ac11f32a4548352ac4c84871ca3aa6390e915cb496716ac171870b
+  allowed_cors_origins: []
+  timezone: Asia/Jakarta
+  cache_ahead_hours: 1
+  auth: local
+
+storage:
+  path: /srv/libretime
+
+database:
+  host: postgres
+  port: 5432
+  name: libretime
+  user: libretime
+  password: libretime
+
+rabbitmq:
+  host: rabbitmq
+  port: 5672
+  vhost: /libretime
+  user: libretime
+  password: libretime
+
+email:
+  from_address: no-reply@kbrbaik.live
+  host: localhost
+  port: 25
+
+playout:
+  liquidsoap_host: liquidsoap
+  liquidsoap_port: 1234
+  record_file_format: ogg
+  record_bitrate: 256
+  record_samplerate: 44100
+  record_channels: 2
+  record_sample_size: 16
+
+liquidsoap:
+  server_listen_address: 0.0.0.0
+  server_listen_port: 1234
+  harbor_listen_address: ["0.0.0.0"]
+
+stream:
+  inputs:
+    main:
+      mount: main
+      port: 8001
+      secure: false
+    show:
+      mount: show
+      port: 8002
+      secure: false
+  outputs:
+    .default_icecast_output: &default_icecast_output
+      host: icecast
+      port: 8000
+      source_password: hackme
+      admin_password: hackme
+      name: KBRBaik Radio
+      description: Radio Kabar Baik
+      website: https://kbrbaik.live
+      genre: Christian
+    icecast:
+      - <<: *default_icecast_output
+        enabled: true
+        public_url: https://radio.kbrbaik.live:8443/stream
+        mount: stream
+        audio:
+          format: mp3
+          bitrate: 128
+          enable_metadata: true
+      - enabled: false
+    shoutcast:
+      - enabled: false
+    system:
+      - enabled: false

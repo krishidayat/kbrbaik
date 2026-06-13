@@ -1,0 +1,64 @@
+Berikut adalah bagan arsitektur sistem dan penjelasan lengkap infografis untuk proyek KbrBaik. Sistem ini menyatukan infrastruktur berbasis komunitas anak muda, kecerdasan buatan, dan penyiaran multimedia Kristen.
+Bagan Arsitektur Kolaborasi KbrBaik
+Bagan di bawah ini menunjukkan aliran data dari input komunitas hingga menjadi produk akhir di kedua situs web utama Anda.
+code
+Code
+[ KOMUNITAS ANAK MUDA / PELAYANAN ] 
+  (Pembuat Konten Mentah: Audio, Video, Laporan)
+                     │
+                     ▼
+    [ OPENCODE AUTOMATION (VPS ENGINE) ]
+  (Teknisi AI: Menjaga & Menghubungkan API)
+                     │
+                     ▼
+         [ STRAPI CMS v5 (POSTGRES) ]
+        (Pusat Data Konten Terstruktur)
+                     │
+                     ▼
+       [ HERMES AGENT (OTAK AI UTAMA) ] 
+   (Membaca data, transkrip, olah format konten)
+                     │
+   ┌─────────────────┴─────────────────┐
+   ▼                                   ▼
+[ GOAL 1: WIKIAI PGIW JABAR ] [ GOAL 2: JEJARING POJOK PODCAST ]
+(wiki.pgiwjabar.org) (kbrbaik.live)
+│ │
+├─ Arsip Data Multi-Bidang ├─ Radio Streaming (Icecast)
+├─ Dokumen Sinode Resmi ├─ Podcast Spotify (RSS Feed)
+└─ Chatbot Konsultasi AI └─ Konten Renungan Anak Muda
+Penjelasan Lengkap Infografis Komponen
+Sistem ini digerakkan oleh 4 Pilar Utama yang bekerja bersama secara otonom di dalam satu Virtual Private Server (VPS):
+1. OpenCode: Sang Teknisi Sistem (AI Developer)
+Peran: Bertugas membangun dan memelihara seluruh kode program di server tanpa lelah.
+Fungsi: Mengotomatiskan pembuatan skrip cron-job untuk memantau RSS Feed Spotify, menangkap video baru dari API YouTube, dan mengatur agar webhook Strapi berjalan mulus menuju Hermes Agent.
+Manfaat: Komunitas anak muda tidak perlu mahir koding backend tingkat lanjut; cukup perintahkan OpenCode lewat terminal untuk memperbaiki atau menambah fitur sistem.
+2. Strapi CMS: Menara Pengawas & Gudang Data (Content Core)
+Peran: Tempat penyimpanan utama (Single Source of Truth) yang mengamankan seluruh aset digital organisasi.
+Fungsi: Menyediakan panel admin modern untuk pengurus PGIW Jabar memasukkan data kegiatan, jadwal siaran radio, serta mengunggah file .mp3 khotbah/podcast ke dalam Media Library.
+Manfaat: Memiliki fitur Role-Based Access Control (RBAC) bawaan. Pengurus Bidang Pemuda hanya bisa mengubah data pemuda, sementara Bidang Wanita mengelola porsinya sendiri, menjaga keamanan data multisite tetap rapi.
+3. Hermes Agent: Produser Konten & Humas Otonom (The AI Brain)
+Peran: Otak kecerdasan buatan yang memproses informasi lisan/mentah menjadi teks berkualitas tinggi.
+Fungsi: Hermes mendeteksi rilis podcast/YouTube baru, mengubahnya menjadi teks lewat bantuan OpenAI Whisper, menyaring candaan/basa-basi siaran, lalu merangkumnya menjadi dua output sekaligus: artikel Wiki formal dan artikel blog populer.
+Manfaat: Memiliki Persistent Memory. Hermes mengingat gaya penulisan rohani yang sesuai dengan nilai PGIW Jabar dan secara mandiri bisa diperintah lewat aplikasi pesan seperti Telegram untuk mengelola konten web.
+4. Infrastruktur Penyiaran: Jembatan Suara Komunitas (Media Suite)
+Broadcaster (Radio Live): Menggunakan server Icecast/AzuraCast di VPS untuk memancarkan suara penyiar anak muda secara real-time ke web kbrbaik.live.
+Podcaster (Audio/Video): Distribusi otomatis menggunakan generator RSS Feed ke platform Spotify, Apple Podcast, dan sinkronisasi video dengan YouTube.
+Aliran Kolaborasi Aplikasi (Bagaimana Semua Aplikasi Bekerja Bersama?)
+Berikut adalah visualisasi langkah-langkah kolaborasi aplikasi ketika komunitas Anda merilis satu konten baru:
+[LANGKAH 1] Anak muda menyiarkan khotbah/podcast live di studio komunitas ──> Disalurkan via Server Icecast.
+│
+▼
+[LANGKAH 2] Rekaman audio diunggah ke Spotify/YouTube ──> Skrip buatan OpenCode mendeteksi konten baru tersebut.
+│
+▼
+[LANGKAH 3] File audio dikirim ke API Transkripsi ──> Diubah menjadi teks naskah mentah 100% akurat.
+│
+▼
+[LANGKAH 4] Hermes Agent membaca teks mentah ──> Memisahkan esensi khotbah teologis dan data kegiatan organisasi.
+│
+▼
+[LANGKAH 5] Hermes menembak API Strapi ──> Menyimpan & menerbitkan konten secara otomatis ke dua web:
+- Jadi Artikel Berita Populer di kbrbaik.live
+- Jadi Basis Pengetahun (Vector DB) di wiki.pgiwjabar.org untuk Chatbot AI.
+Dengan skema ini, KbrBaik menjadi ekosistem digital yang mandiri. Komunitas anak muda berfokus pada pelayanan kreatif dan produksi media (audio/video), sementara urusan dokumentasi, penulisan artikel web, SEO, dan pengarsipan WikiAI dilakukan secara otomatis oleh kecerdasan buatan di latar belakang server.
+Untuk melangkah ke tahap eksekusi, apakah Anda ingin tim komunitas menyiapkan struktur tabel database di Strapi terlebih dahulu untuk memetakan bidang-bidang di PGIW Jabar?
